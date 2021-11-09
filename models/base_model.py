@@ -26,3 +26,5 @@ class BaseModel:
             '__class__' = self.__class__.__name__
             self.created_at = datetime.today()
             self.created_at.isoformat()
+            self.updated_at = self.created_at
+            self.updated_at.isoformat()
