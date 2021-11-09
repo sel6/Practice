@@ -6,5 +6,5 @@ class BaseModel:
     for other classes"""
     def __init__(self, id):
         """unique IDs"""
-        self.id=uuid.uuid(4)
+        self.id=str(uuid.uuid(4))
  
