@@ -23,4 +23,6 @@ class BaseModel:
         """returns a dictionary containing all keys/values of __dict__ of the instance"""
         for key, value in self.__dict__.items():
             return(repr(self.__dict__))
-            
+            '__class__' = self.__class__.__name__
+            self.created_at = datetime.today()
+            self.created_at.isoformat()
