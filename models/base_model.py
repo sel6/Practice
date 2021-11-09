@@ -22,5 +22,5 @@ class BaseModel:
     def to_dict(self):
         """returns a dictionary containing all keys/values of __dict__ of the instance"""
         for key, value in self.__dict__.items():
-            repr(self.__dict__)
+            return(repr(self.__dict__))
             
