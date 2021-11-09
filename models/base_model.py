@@ -7,6 +7,6 @@ class BaseModel:
     for other classes"""
     def __init__(self, id, created_at, updated_at):
         """unique IDs"""
-        self.id=str(uuid.uuid(4))
-        self.created_at=
-        self.updated_at=
+        self.id=id
+        self.created_at=created_at
+        self.updated_at=updated_at
