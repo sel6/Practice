@@ -7,9 +7,7 @@ class TestBaseModel:
   
   
   def test___init__(self):
-    isinstance(self.id, uuid.uuid4())
     assertIsInstance(self.id, uuid.uuid4())
-    isinstance(self.id, str)
     assertIsInstance(self.id, str)
     assertIsEqual(created_at, datetime.today())
     assertIsEqual(updated_at, created_at)
