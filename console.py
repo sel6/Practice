@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-A console program to be used for database managment
-bot file database and mysql database
+A command line interpreter for AirBnB clone
 """
 
 import cmd
