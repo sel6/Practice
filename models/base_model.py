@@ -1,28 +1,42 @@
-#!/usr/bin/python3
+#!/bin/usr/python3
+"""file containing basemodel class"""
+from datetime import datetime
+from models import storage
 import uuid
-from datetime import date
 
-class BaseModel:
-    """ common attribute, methods
-    for other classes"""
-    def __init__(self, id, created_at, updated_at):
-        """unique IDs"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = self.created_at
-    
+
+class BaseModel():
+    """Class BaseModel, base model for AirBnB Clone"""
+
+    def __init__(self, *args, **kwargs):
+        """initializes BaseModel"""
+        if kwargs is None or len(kwargs) == 0:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
+        else:
+            for key, value in kwargs.items():
+                if key == "created_at" or key == "updated_at":
+                    time = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, time)
+                elif key != "__class__":
+                    setattr(self, key, value)
+
     def __str__(self):
-        return"[{}]({}){}.format(self.__class__.__name__, self.id, self.__dict__)"
-    
+        """class str method"""
+        classname = self.__class__.__name__
+        return "[{}] ({}) {}".format(classname, self.id, self.__dict__)
+
     def save(self):
-         """updates the public instance attribute updated_at with the current datetime"""
-         self.updated_at = datetime.today()
-         
-    Dict = {}    
+        """updates updated_at with current time"""
+        self.updated_at = datetime.now()
+        storage.save()
+
     def to_dict(self):
-        """returns a dictionary containing all keys/values of __dict__ of the instance"""
-        for key, value in self.__dict__.items():
-            return(repr(self.__dict__))
-            Dict[__class__] = value.self.__class__.__name__
-            Dict[self.created_at] = value.isoformat()
-            Dict[self.updated_at] = value.isoformat()
+        """creates a dictionary of BaseModel"""
+        self_dictionary = dict(self.__dict__)
+        self_dictionary['__class__'] = self.__class__.__name__
+        self_dictionary['created_at'] = datetime.isoformat(self.created_at)
+        self_dictionary['updated_at'] = datetime.isoformat(self.updated_at)
+        return self_dictionary
